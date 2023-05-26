@@ -15,10 +15,11 @@ public class MoverFondo extends Thread {
     public void run() {
         try {
             while(true) {
-            	Thread.sleep(100);
+            	Thread.sleep(10);
             	prueba.subir();
                 prueba.derecha();
                 prueba.izquierda();
+                prueba.bajar();
                 prueba.moverEnemigos();
                 prueba.verificarColision();
             }
