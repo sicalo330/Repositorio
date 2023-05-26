@@ -113,9 +113,9 @@ public class Prueba extends JFrame {
 	public void verificarColision() {
 		if (enemigo.getX() < (personaje.getX() + 96) && (enemigo.getX() + 96) > personaje.getX()
 				&& (personaje.getY() + 96) > enemigo.getY()) {
-			System.out.println("Colisión");
+			//System.out.println("Colisión");
 		} else {
-			System.out.println("No hay colisión");
+			//System.out.println("No hay colisión");
 		}
 	}
 }

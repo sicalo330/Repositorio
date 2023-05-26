@@ -1,9 +1,9 @@
 
-public abstract class DecoradorDispararBala implements Disparar {//	Decorador abstracto
+public abstract class DecoradorDisparar implements Disparar {//	Decorador abstracto
 	
 	protected Disparar disparar;
 	
-	public DecoradorDispararBala(Disparar disparar) {
+	public DecoradorDisparar(Disparar disparar) {
 		this.disparar = disparar;
 	}
 	
