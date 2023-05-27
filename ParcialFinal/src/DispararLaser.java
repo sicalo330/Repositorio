@@ -13,14 +13,14 @@ public class DispararLaser extends DecoradorDisparar {
 		this.control = control;
 	}
 	
-	@Override
+	
 	public void disparo() {
 		if(control.disparar) {
-	        JLabel label = new JLabel("");
-	        label.setBounds(prueba.personaje.getX() + 259, prueba.personaje.getY() - 40, 100, 200);//x,y, ancho, altura respectivamente
-	        ImageIcon icon = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\Bala.png");
-	        label.setIcon(icon);
-	        prueba.getContentPane().add(label);
+	        JLabel label = new JLabel("");//Creo un label
+	        label.setBounds(prueba.personaje.getX() + 259, prueba.personaje.getY() - 40, 100, 200);//se establece el label en x,y, ancho, altura respectivamente
+	        ImageIcon icon = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\Bala.png");//El icono del label
+	        label.setIcon(icon);//Pone el icono
+	        prueba.getContentPane().add(label);//Lo muestra
 	        prueba.revalidate();
 	        prueba.repaint();
 		}

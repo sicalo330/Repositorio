@@ -1,4 +1,3 @@
-
 public abstract class DecoradorDisparar implements Disparar {//	Decorador abstracto
 	
 	protected Disparar disparar;

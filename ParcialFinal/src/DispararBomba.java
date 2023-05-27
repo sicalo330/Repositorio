@@ -8,7 +8,6 @@ public class DispararBomba extends DecoradorDisparar {
 		this.control = control;
 	}
 	
-	@Override
 	public void bomba() {
 		if(control.bomba) {
 	       System.out.println("Bomba");
