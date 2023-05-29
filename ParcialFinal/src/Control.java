@@ -4,10 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Control implements ActionListener, KeyListener {
-    Prueba prueba;
-    DispararBomba dispararBomba;
-    DispararLaser dispararLaser;
-    Disparar disparar_1;
+	Prueba prueba;
     boolean derecha = false;
     boolean izquierda = false;
     boolean subir = false;
@@ -19,8 +16,6 @@ public class Control implements ActionListener, KeyListener {
     
     public Control(Prueba prueba) {
         this.prueba = prueba;
-        this.dispararLaser = new DispararLaser(this.disparar_1,this, this.prueba);
-        this.dispararBomba = new DispararBomba(this.disparar_1,this, this.prueba);
     }
     
     public void actionPerformed(ActionEvent evento) {
@@ -52,11 +47,10 @@ public class Control implements ActionListener, KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = true;
-        	dispararLaser.disparo();
+        	prueba.disparar();
         }
-        if (e.getKeyCode() == KeyEvent.VK_X) {
+        if (e.getKeyCode() == KeyEvent.VK_X) {//Recordar hacer esto
         	bomba = true;
-        	dispararBomba.bomba();
         }
     }
 
@@ -80,11 +74,10 @@ public class Control implements ActionListener, KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = false;
-        	dispararLaser.disparo();
+        	prueba.disparar();
         }
-        if (e.getKeyCode() == KeyEvent.VK_X) {
+        if (e.getKeyCode() == KeyEvent.VK_X) {//Recordar hacer esto
         	bomba = false;
-        	dispararBomba.bomba();
         }
     }
 }

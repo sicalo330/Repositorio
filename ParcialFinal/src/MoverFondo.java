@@ -3,9 +3,11 @@ import javax.swing.JLabel;
 public class MoverFondo extends Thread {
     Prueba prueba;
     JLabel moverFondo;
+    Notificador notificador;
 
     public MoverFondo(Prueba prueba){
         this.prueba = prueba;
+        this.notificador = new Notificador(prueba.nave, prueba);
     }
 
     public void setMoverFondo(JLabel moverFondo) {
@@ -22,6 +24,7 @@ public class MoverFondo extends Thread {
                 prueba.bajar();
                 prueba.moverEnemigos();
                 prueba.verificarColision();
+                notificador.addObserver(prueba.nave);
             }
         }
         catch(Exception e) {
