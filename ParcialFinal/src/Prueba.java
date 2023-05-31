@@ -47,6 +47,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
      * Create the frame.
      */
     public Prueba() {
+    	setResizable(false);
         vida = new JLabel(); // Inicialización de la variable vida
 
         contentPane = new JPanel();
@@ -123,17 +124,18 @@ public class Prueba extends JFrame implements Jugador { // Observador
         }
         // TODO: update character position and/or change image
     }
-
+    
     public void disparar() {
         if (control.disparar) {
-            bala = new JLabel("");// Creo un label
-            ImageIcon icon = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\BalaReducida.png");
-            bala.setBounds(nave.getX() + 90, nave.getY() - 70, 100, 200);
-            bala.setIcon(icon);
-            contentPane_1.add(bala);
-            revalidate();
-            repaint();
-
+            if (bala == null || bala.getX() > 800) { // Verifica si no hay una bala existente o si la bala actual ha salido de la pantalla
+                bala = new JLabel(""); // Crea un nuevo objeto JLabel para representar la bala
+                ImageIcon icon = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\BalaReducida.png");
+                bala.setBounds(nave.getX() + 90, nave.getY() - 70, 100, 200);
+                bala.setIcon(icon);
+                contentPane_1.add(bala);
+                revalidate();
+                repaint();
+            }
         }
     }
 

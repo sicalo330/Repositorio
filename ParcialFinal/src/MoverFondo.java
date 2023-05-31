@@ -42,7 +42,7 @@ public class MoverFondo extends Thread {
                     prueba.bajar();
                     prueba.moverEnemigos();
                     prueba.verificarColision();
-                    //notificador.addObserver(prueba.nave);
+                    notificador.addObserver(prueba.nave);
             	}
             }
         }

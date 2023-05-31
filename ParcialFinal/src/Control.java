@@ -21,7 +21,7 @@ public class Control implements ActionListener, KeyListener {
     }
     
     public void actionPerformed(ActionEvent evento) {
-         prueba.bala.setLocation(prueba.bala.getX() + 5, prueba.bala.getY());
+         prueba.bala.setLocation(prueba.bala.getX() + 30, prueba.bala.getY());
     }
 
     @Override
