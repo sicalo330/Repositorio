@@ -13,18 +13,37 @@ public class MoverFondo extends Thread {
     public void setMoverFondo(JLabel moverFondo) {
         this.moverFondo = moverFondo;
     }
+    
+    public void revisar() {
+        try {
+        	while(true) {
+        		Thread.sleep(10);
+                prueba.verificarColision();
+                notificador.addObserver(prueba.nave);
+        	}
+        }catch(Exception e) {
+        	System.out.println("Error en la ejecución" + e);
+        }
+
+    }
 
     public void run() {
         try {
             while(true) {
-            	Thread.sleep(10);
-            	prueba.subir();
-                prueba.derecha();
-                prueba.izquierda();
-                prueba.bajar();
-                prueba.moverEnemigos();
-                prueba.verificarColision();
-                notificador.addObserver(prueba.nave);
+            	if(prueba.terminar) {
+            		System.out.println("Fin del juego");
+            		break;
+            	}
+            	else {
+                	Thread.sleep(10);
+                	prueba.subir();
+                    prueba.derecha();
+                    prueba.izquierda();
+                    prueba.bajar();
+                    prueba.moverEnemigos();
+                    prueba.verificarColision();
+                    //notificador.addObserver(prueba.nave);
+            	}
             }
         }
         catch(Exception e) {

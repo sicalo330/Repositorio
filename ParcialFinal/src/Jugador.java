@@ -1,3 +1,3 @@
-public interface Jugador {//Observador
+public interface Jugador {
 	void update();
 }

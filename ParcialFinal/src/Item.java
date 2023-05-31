@@ -1,7 +1,6 @@
 import javax.swing.JLabel;
 
-public interface Item{//Observable
+public interface Item{
 	void addObserver(JLabel item);
-	void removeObserver(JLabel item);
 	void notificar();
 }
