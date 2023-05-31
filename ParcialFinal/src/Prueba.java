@@ -72,7 +72,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
         contentPane_1.add(nave);
         System.out.println("Posición del personaje: " + nave.getY() + "," + nave.getX());
 
-        enemigo.setBounds(689, 324, 113, 105);
+        enemigo.setBounds(365, 228, 113, 105);
         contentPane_1.add(enemigo);
         enemigo.setIcon(new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\Enemigo genérico.png"));
 
@@ -91,7 +91,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
     }
 
     public void moverEnemigos() {
-        enemigo.setLocation(enemigo.getX() - 5, enemigo.getY());
+        enemigo.setLocation(enemigo.getX() , enemigo.getY());
     }
 
     public void subir() {
@@ -127,31 +127,29 @@ public class Prueba extends JFrame implements Jugador { // Observador
     public void disparar() {
         if (control.disparar) {
             bala = new JLabel("");// Creo un label
-            bala.setBounds(nave.getX() + 90, nave.getY() - 70, 100, 200);
             ImageIcon icon = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\BalaReducida.png");
+            bala.setBounds(nave.getX() + 90, nave.getY() - 70, 100, 200);
             bala.setIcon(icon);
             contentPane_1.add(bala);
             revalidate();
             repaint();
+
         }
     }
 
     public void verificarColision() {
-        if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX()
-                && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
+        if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
             System.out.println("Colisión");
-            /*
-             * Prueba juego = Prueba.this; GameOver gameOver = new GameOver();
-             * gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
-             * moverFondo.run();
+             /*Prueba juego = Prueba.this; GameOver gameOver = new GameOver();
+             gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
+             moverFondo.run();
              */
         }
-        if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 113 && bala.getY() + 200 > enemigo.getY() && bala.getY() < enemigo.getY() + 105) {
+        if (bala != null && bala.getX() + 32 > enemigo.getX() && bala.getX() < enemigo.getX() + 113 && bala.getY() + 32 > enemigo.getY() && bala.getY() - 40 < enemigo.getY() + 105) {
             System.out.println(vidaEnemigo);
             this.vidaEnemigo = this.vidaEnemigo - quitarVida;
             System.out.println(vidaEnemigo);
-            this.aux = false;
-            this.limite -= 1;
+            bala.setLocation(6000, 5000);
             if (vidaEnemigo <= 0) {
                 enemigo.setLocation(5000, 5000);
             }

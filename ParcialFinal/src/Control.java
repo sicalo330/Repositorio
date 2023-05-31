@@ -3,6 +3,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.Timer;
+
 public class Control implements ActionListener, KeyListener {
 	Prueba prueba;
     boolean derecha = false;
@@ -11,7 +13,7 @@ public class Control implements ActionListener, KeyListener {
     boolean bajar = false;
     boolean disparar = false;
     boolean bomba = false;
-    
+    Timer timer = new Timer(1, this); // Cada 10 milisegundos se activará el ActionListener
     
     
     public Control(Prueba prueba) {
@@ -19,7 +21,7 @@ public class Control implements ActionListener, KeyListener {
     }
     
     public void actionPerformed(ActionEvent evento) {
-        
+         prueba.bala.setLocation(prueba.bala.getX() + 5, prueba.bala.getY());
     }
 
     @Override
@@ -48,9 +50,7 @@ public class Control implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = true;
         	prueba.disparar();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_X) {//Recordar hacer esto
-        	bomba = true;
+        	timer.start();
         }
     }
 
@@ -75,9 +75,6 @@ public class Control implements ActionListener, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = false;
         	prueba.disparar();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_X) {//Recordar hacer esto
-        	bomba = false;
         }
     }
 }
