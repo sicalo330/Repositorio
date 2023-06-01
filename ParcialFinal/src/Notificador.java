@@ -4,17 +4,16 @@ public class Notificador implements Item {//Observable
 	Prueba prueba;
 	JLabel item;
 	MoverFondo moverFondo;
-	public static boolean terminar;
 	
-	public Notificador(JLabel item, Prueba prueba) {
+	public Notificador(JLabel item, Prueba prueba) {//90 46
 		this.item = item;
 		this.prueba = prueba;
 	}
 
 	@Override
 	public void addObserver(JLabel item) {
-		if (item.getX() < (prueba.vida.getX() + 62) && (item.getX() + 62) > prueba.vida.getX() && (prueba.vida.getY() + 100) > item.getY() && prueba.vida.getY() < item.getY() + 112) {
-			System.out.println("Colisionó con el item");
+		if (prueba.poder != null && (item.getX() < (prueba.poder.getX() + 90) && (item.getX() + 62) > prueba.poder.getX() && (prueba.poder.getY() + 46) > item.getY() && prueba.poder.getY() < item.getY() + 112)){
+			prueba.poder.setLocation(5000, 5000);
 			prueba.update();
 			
 		} 

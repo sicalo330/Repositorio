@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import java.lang.Math;
 
 public class Prueba extends JFrame implements Jugador { // Observador
     Control control;
@@ -19,12 +20,18 @@ public class Prueba extends JFrame implements Jugador { // Observador
     public JLabel nave;
     public JLabel bala;
     public final JLabel enemigo = new JLabel("");
-    public JLabel vida; // Item del juego
+    public JLabel poder = null; // Item del juego
     public int limite = 0;
     public boolean aux;
     public boolean terminar = false;
-    public double vidaEnemigo = 2.0;
-    public double quitarVida = 1.0;
+    public double vidaEnemigo = 100.0;
+    public double quitarVida = 0.1;
+    public int aparicion;
+    public int x;
+    public int y;
+    private int amplitud = 20; // Ajusta la amplitud del movimiento senoidal
+    private double tiempo = 0; // Variable de tiempo para controlar el movimiento
+
 
     /**
      * Launch the application.
@@ -47,8 +54,6 @@ public class Prueba extends JFrame implements Jugador { // Observador
      * Create the frame.
      */
     public Prueba() {
-    	setResizable(false);
-        vida = new JLabel(); // Inicialización de la variable vida
 
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -73,26 +78,37 @@ public class Prueba extends JFrame implements Jugador { // Observador
         contentPane_1.add(nave);
         System.out.println("Posición del personaje: " + nave.getY() + "," + nave.getX());
 
-        enemigo.setBounds(365, 228, 113, 105);
+        enemigo.setBounds(468, 199, 113, 105);
         contentPane_1.add(enemigo);
         enemigo.setIcon(new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\Enemigo genérico.png"));
-
-        vida = new JLabel("");
-        vida.setIcon(new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\Vida.png"));
-        vida.setBounds(109, 88, 62, 52);
-        contentPane_1.add(vida);
 
         notificador = new Notificador(nave, this);
         notificador.addObserver(nave);
     }
 
-    public void moverFondo() {
-        JLabel fondo = (JLabel) contentPane_1.getComponent(2);
-        fondo.setLocation(fondo.getX() - 2, fondo.getY());
+    public void UbicarNave() {
+    	if(nave.getX()< -30) {
+    		nave.setLocation(690, nave.getY());
+    	}
+    	if(nave.getX()>690) {
+    		nave.setLocation(-30, nave.getY());
+    	}
+    	if(nave.getY()< -30) {
+    		nave.setLocation(nave.getX(), 533);
+    	}
+    	if(nave.getY()> 533) {
+    		nave.setLocation(nave.getX(), -30);
+    	}
     }
 
     public void moverEnemigos() {
-        enemigo.setLocation(enemigo.getX() , enemigo.getY());
+        int velocidad = 2;
+        int posY = (int) (enemigo.getY() + amplitud * Math.sin(tiempo));
+        enemigo.setLocation(enemigo.getX() - velocidad, posY);
+        tiempo += 0.1;
+        if(enemigo.getX() < -30) {
+        	enemigo.setLocation(690, posY);
+        }
     }
 
     public void subir() {
@@ -139,15 +155,27 @@ public class Prueba extends JFrame implements Jugador { // Observador
         }
     }
 
-    public void verificarColision() {
+    public void verificar() {
+        this.aparicion = (int)(Math.random() * 100);
+        this.x = (int)(Math.random() * 400);
+        this.y = (int)(Math.random() * 400);
+        if(aparicion == 1 && (poder == null || poder.getX()>=5000)) {
+        	poder = new JLabel("");
+        	ImageIcon iconPoder = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\item_poder.png");
+        	poder.setBounds(this.x, this.y, 90, 46);
+            poder.setIcon(iconPoder);
+            contentPane_1.add(poder);
+            revalidate();
+            repaint();
+        }
         if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
             System.out.println("Colisión");
-             /*Prueba juego = Prueba.this; GameOver gameOver = new GameOver();
+             Prueba juego = Prueba.this; GameOver gameOver = new GameOver();
              gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
              moverFondo.run();
-             */
+             
         }
-        if (bala != null && bala.getX() + 32 > enemigo.getX() && bala.getX() < enemigo.getX() + 113 && bala.getY() + 32 > enemigo.getY() && bala.getY() - 40 < enemigo.getY() + 105) {
+        if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 100 && bala.getY() + 100 > enemigo.getY() && bala.getY() < enemigo.getY() + 52) {
             System.out.println(vidaEnemigo);
             this.vidaEnemigo = this.vidaEnemigo - quitarVida;
             System.out.println(vidaEnemigo);
@@ -160,7 +188,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
 
     @Override
     public void update() {
-        System.out.println("La nave obtiene 1 de vida");
+        this.quitarVida += 0.5;
 
     }
 }
