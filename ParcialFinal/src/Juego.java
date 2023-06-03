@@ -178,6 +178,10 @@ public class Juego extends JFrame implements Observador { // Observador
             bala.setLocation(6000, 5000);
             if (vidaEnemigo <= 0) {
                 enemigo.setLocation(5000, 5000);
+                Juego ventanaJuego = Juego.this;//Lo último hace referencia a la instancia actual, es cómo decirle a Java que ventanaPrincipal es la instancia actual
+		        Final ventanaFinal = new Final();
+		        ventanaFinal.setVisible(true);//Hace visible la ventana para la sección de zapatos de hombre deportivo
+		        ventanaJuego.setVisible(false);//Hace invisible a la ventana principal pero no lo borra, esto para poder volver después de ser necesario
             }
         }
     }
