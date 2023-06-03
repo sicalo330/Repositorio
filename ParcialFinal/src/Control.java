@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.Timer;
 
 public class Control implements ActionListener, KeyListener {
-	Prueba prueba;
+	Juego juego;
     boolean derecha = false;
     boolean izquierda = false;
     boolean subir = false;
@@ -16,12 +16,12 @@ public class Control implements ActionListener, KeyListener {
     Timer timer = new Timer(1, this); // Cada 10 milisegundos se activará el ActionListener
     
     
-    public Control(Prueba prueba) {
-        this.prueba = prueba;
+    public Control(Juego juego) {
+        this.juego = juego;
     }
     
     public void actionPerformed(ActionEvent evento) {
-         prueba.bala.setLocation(prueba.bala.getX() + 30, prueba.bala.getY());
+         juego.bala.setLocation(juego.bala.getX() + 30, juego.bala.getY());
     }
 
     @Override
@@ -33,23 +33,23 @@ public class Control implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             subir = true;
-            prueba.subir();
+            juego.subir();
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             derecha = true;
-            prueba.derecha();
+            juego.derecha();
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             izquierda = true;
-            prueba.izquierda();
+            juego.izquierda();
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             bajar = true;
-            prueba.bajar();
+            juego.bajar();
         }
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = true;
-        	prueba.disparar();
+        	juego.disparar();
         	timer.start();
         }
     }
@@ -58,23 +58,23 @@ public class Control implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             subir = false;
-            prueba.subir();
+            juego.subir();
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             derecha = false;
-            prueba.derecha();
+            juego.derecha();
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             izquierda = false;
-            prueba.izquierda();
+            juego.izquierda();
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             bajar = false;
-            prueba.bajar();
+            juego.bajar();
         }
         if (e.getKeyCode() == KeyEvent.VK_Z) {
         	disparar = false;
-        	prueba.disparar();
+        	juego.disparar();
         }
     }
 }

@@ -1,13 +1,13 @@
 import javax.swing.JLabel;
 
 public class MoverFondo extends Thread {
-    Prueba prueba;
+    Juego juego;
     JLabel moverFondo;
     Notificador notificador;
 
-    public MoverFondo(Prueba prueba){
-        this.prueba = prueba;
-        this.notificador = new Notificador(prueba.nave, prueba);
+    public MoverFondo(Juego juego){
+        this.juego = juego;
+        this.notificador = new Notificador(juego.nave, juego);
     }
 
     public void setMoverFondo(JLabel moverFondo) {
@@ -17,20 +17,20 @@ public class MoverFondo extends Thread {
     public void run() {
         try {
             while(true) {
-            	if(prueba.terminar) {
+            	if(juego.terminar) {
             		System.out.println("Fin del juego");
             		break;
             	}
             	else {
                 	Thread.sleep(10);
-                	prueba.subir();
-                    prueba.derecha();
-                    prueba.izquierda();
-                    prueba.bajar();
-                    //prueba.moverEnemigos();
-                    prueba.UbicarNave();
-                    prueba.verificar();
-                    notificador.addObserver(prueba.nave);
+                	juego.subir();
+                	juego.derecha();
+                	juego.izquierda();
+                	juego.bajar();
+                	juego.moverEnemigos();
+                	juego.UbicarNave();
+                	juego.verificar();
+                    notificador.addObserver(juego.nave);
             	}
             }
         }

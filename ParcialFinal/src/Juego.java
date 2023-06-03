@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.lang.Math;
 
-public class Prueba extends JFrame implements Jugador { // Observador
+public class Juego extends JFrame implements Observador { // Observador
     Control control;
     MoverFondo moverFondo;
     Notificador notificador;
@@ -40,7 +40,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Prueba frame = new Prueba();
+                    Juego frame = new Juego();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -53,7 +53,7 @@ public class Prueba extends JFrame implements Jugador { // Observador
     /**
      * Create the frame.
      */
-    public Prueba() {
+    public Juego() {
 
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -76,7 +76,6 @@ public class Prueba extends JFrame implements Jugador { // Observador
         nave.setIcon(new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\nuevaNave.png"));
         nave.setBounds(10, 353, 82, 52);
         contentPane_1.add(nave);
-        System.out.println("Posición del personaje: " + nave.getY() + "," + nave.getX());
 
         enemigo.setBounds(468, 199, 113, 105);
         contentPane_1.add(enemigo);
@@ -169,16 +168,13 @@ public class Prueba extends JFrame implements Jugador { // Observador
             repaint();
         }
         if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
-            System.out.println("Colisión");
-             Prueba juego = Prueba.this; GameOver gameOver = new GameOver();
+             Juego juego = Juego.this; GameOver gameOver = new GameOver();
              gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
              moverFondo.run();
              
         }
         if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 100 && bala.getY() + 100 > enemigo.getY() && bala.getY() < enemigo.getY() + 52) {
-            System.out.println(vidaEnemigo);
-            this.vidaEnemigo = this.vidaEnemigo - quitarVida;
-            System.out.println(vidaEnemigo);
+            this.vidaEnemigo = this.vidaEnemigo - quitarVida;;
             bala.setLocation(6000, 5000);
             if (vidaEnemigo <= 0) {
                 enemigo.setLocation(5000, 5000);

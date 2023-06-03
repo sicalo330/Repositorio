@@ -1,20 +1,20 @@
 import javax.swing.JLabel;
 
-public class Notificador implements Item {//Observable
-	Prueba prueba;
-	JLabel item;
+public class Notificador implements Observable {//Observable
+	Juego juego;
+	JLabel jugador;
 	MoverFondo moverFondo;
 	
-	public Notificador(JLabel item, Prueba prueba) {//90 46
-		this.item = item;
-		this.prueba = prueba;
+	public Notificador(JLabel jugador, Juego juego) {//90 46
+		this.jugador = jugador;
+		this.juego = juego;
 	}
 
 	@Override
-	public void addObserver(JLabel item) {
-		if (prueba.poder != null && (item.getX() < (prueba.poder.getX() + 90) && (item.getX() + 62) > prueba.poder.getX() && (prueba.poder.getY() + 46) > item.getY() && prueba.poder.getY() < item.getY() + 112)){
-			prueba.poder.setLocation(5000, 5000);
-			prueba.update();
+	public void addObserver(JLabel jugador) {
+		if (juego.poder != null && (jugador.getX() < (juego.poder.getX() + 90) && (jugador.getX() + 62) > juego.poder.getX() && (juego.poder.getY() + 46) > jugador.getY() && juego.poder.getY() < jugador.getY() + 112)){
+			juego.poder.setLocation(5000, 5000);
+			juego.update();
 			
 		} 
 		
