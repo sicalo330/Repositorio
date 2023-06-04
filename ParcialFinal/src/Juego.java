@@ -6,10 +6,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.lang.Math;
+import java.awt.Color;
 
 public class Juego extends JFrame implements Observador { // Observador
     Control control;
-    MoverFondo moverFondo;
+    MoverCosas moverCosas;
     Notificador notificador;
     /**
      * 
@@ -58,8 +59,8 @@ public class Juego extends JFrame implements Observador { // Observador
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
 
-        moverFondo = new MoverFondo(this);
-        moverFondo.start();
+        moverCosas = new MoverCosas(this);
+        moverCosas.start();
 
         control = new Control(this);
         this.addKeyListener(control);
@@ -67,6 +68,7 @@ public class Juego extends JFrame implements Observador { // Observador
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 731, 551);
         contentPane_1 = new JPanel();
+        contentPane_1.setBackground(new Color(255, 255, 255));
         contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane_1);
@@ -170,7 +172,7 @@ public class Juego extends JFrame implements Observador { // Observador
         if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
              Juego juego = Juego.this; GameOver gameOver = new GameOver();
              gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
-             moverFondo.run();
+             moverCosas.run();
              
         }
         if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 100 && bala.getY() + 100 > enemigo.getY() && bala.getY() < enemigo.getY() + 52) {

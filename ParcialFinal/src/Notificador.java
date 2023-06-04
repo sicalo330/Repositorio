@@ -3,7 +3,7 @@ import javax.swing.JLabel;
 public class Notificador implements Observable {//Observable
 	Juego juego;
 	JLabel jugador;
-	MoverFondo moverFondo;
+	MoverCosas moverCosas;
 	
 	public Notificador(JLabel jugador, Juego juego) {//90 46
 		this.jugador = jugador;

@@ -1,11 +1,11 @@
 import javax.swing.JLabel;
 
-public class MoverFondo extends Thread {
+public class MoverCosas extends Thread {
     Juego juego;
     JLabel moverFondo;
     Notificador notificador;
 
-    public MoverFondo(Juego juego){
+    public MoverCosas(Juego juego){
         this.juego = juego;
         this.notificador = new Notificador(juego.nave, juego);
     }
