@@ -3,7 +3,6 @@ import javax.swing.JLabel;
 public class Notificador implements Observable {//Observable
 	Juego juego;
 	JLabel jugador;
-	MoverCosas moverCosas;
 	
 	public Notificador(JLabel jugador, Juego juego) {//90 46
 		this.jugador = jugador;
@@ -15,8 +14,7 @@ public class Notificador implements Observable {//Observable
 		if (juego.poder != null && (jugador.getX() < (juego.poder.getX() + 90) && (jugador.getX() + 62) > juego.poder.getX() && (juego.poder.getY() + 46) > jugador.getY() && juego.poder.getY() < jugador.getY() + 112)){
 			juego.poder.setLocation(5000, 5000);
 			juego.update();
-			
-		} 
+		}
 		
 	}
 

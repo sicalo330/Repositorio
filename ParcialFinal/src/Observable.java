@@ -1,6 +1,6 @@
 import javax.swing.JLabel;
 
 public interface Observable{
-	void addObserver(JLabel item);
+	void addObserver(JLabel jugador);
 	void notificar();
 }

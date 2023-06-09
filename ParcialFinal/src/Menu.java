@@ -47,11 +47,11 @@ public class Menu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre del juego");
+		JLabel lblNewLabel = new JLabel("Spelunker pt 2");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(332, 37, 173, 58);
+		lblNewLabel.setBounds(346, 36, 173, 58);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Jugar");

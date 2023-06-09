@@ -12,7 +12,6 @@ public class Control implements ActionListener, KeyListener {
     boolean subir = false;
     boolean bajar = false;
     boolean disparar = false;
-    boolean bomba = false;
     Timer timer = new Timer(1, this); // Cada 10 milisegundos se activará el ActionListener
     
     
@@ -20,7 +19,7 @@ public class Control implements ActionListener, KeyListener {
         this.juego = juego;
     }
     
-    public void actionPerformed(ActionEvent evento) {
+    public void actionPerformed(ActionEvent evento) {//detecta los eventos de acción
          juego.bala.setLocation(juego.bala.getX() + 30, juego.bala.getY());
     }
 
@@ -30,7 +29,7 @@ public class Control implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {//Cuando apretamos la tecla
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             subir = true;
             juego.subir();
@@ -55,7 +54,7 @@ public class Control implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {//Cuando deja de ser presionado
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             subir = false;
             juego.subir();

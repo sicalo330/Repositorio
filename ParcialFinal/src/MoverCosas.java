@@ -10,10 +10,6 @@ public class MoverCosas extends Thread {
         this.notificador = new Notificador(juego.nave, juego);
     }
 
-    public void setMoverFondo(JLabel moverFondo) {
-        this.moverFondo = moverFondo;
-    }
-
     public void run() {
         try {
             while(true) {

@@ -25,7 +25,7 @@ public class Juego extends JFrame implements Observador { // Observador
     public int limite = 0;
     public boolean aux;
     public boolean terminar = false;
-    public double vidaEnemigo = 100.0;
+    public double vidaEnemigo = 10.0;
     public double quitarVida = 0.1;
     public int aparicion;
     public int x;
@@ -160,7 +160,7 @@ public class Juego extends JFrame implements Observador { // Observador
         this.aparicion = (int)(Math.random() * 100);
         this.x = (int)(Math.random() * 400);
         this.y = (int)(Math.random() * 400);
-        if(aparicion == 1 && (poder == null || poder.getX()>=5000)) {
+        if(aparicion == 1 && (poder == null || poder.getX()>=5000)) {//Creación del item
         	poder = new JLabel("");
         	ImageIcon iconPoder = new ImageIcon("C:\\Users\\noah_\\OneDrive\\Escritorio\\item_poder.png");
         	poder.setBounds(this.x, this.y, 90, 46);
@@ -169,15 +169,16 @@ public class Juego extends JFrame implements Observador { // Observador
             revalidate();
             repaint();
         }
-        if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {
+        if (enemigo.getX() < (nave.getX() + 82) && (enemigo.getX() + 82) > nave.getX() && (nave.getY() + 52) > enemigo.getY() && (enemigo.getY() + 105) > nave.getY()) {//Colisión nave-enemigo
              Juego juego = Juego.this; GameOver gameOver = new GameOver();
              gameOver.setVisible(true); juego.setVisible(false); this.terminar = true;
              moverCosas.run();
              
         }
-        if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 100 && bala.getY() + 100 > enemigo.getY() && bala.getY() < enemigo.getY() + 52) {
-            this.vidaEnemigo = this.vidaEnemigo - quitarVida;;
+        if (bala != null && bala.getX() + 100 > enemigo.getX() && bala.getX() < enemigo.getX() + 100 && bala.getY() + 100 > enemigo.getY() && bala.getY() < enemigo.getY() + 52) {//Colisión bala-enemigo
+            this.vidaEnemigo = this.vidaEnemigo - quitarVida;
             bala.setLocation(6000, 5000);
+            System.out.println(quitarVida);
             if (vidaEnemigo <= 0) {
                 enemigo.setLocation(5000, 5000);
                 Juego ventanaJuego = Juego.this;//Lo último hace referencia a la instancia actual, es cómo decirle a Java que ventanaPrincipal es la instancia actual
@@ -191,7 +192,6 @@ public class Juego extends JFrame implements Observador { // Observador
     @Override
     public void update() {
         this.quitarVida += 0.5;
-
     }
 }
 
